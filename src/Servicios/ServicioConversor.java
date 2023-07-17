@@ -1,6 +1,7 @@
 package Servicios;
 
 import Entidades.Conversor;
+
 import javax.swing.*;
 import java.util.Scanner;
 
@@ -14,8 +15,13 @@ public abstract class ServicioConversor {
     }
 
     protected double ingresarValorAConvertir(){
-        double valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor a convertir"));
-        //Manejo error si no ingresa double.
+        double valor = 0;
+        try {
+            valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor a convertir"));
+        } catch (NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "Error, debe ingresar un número (no letras ni caracteres especiales).");
+            valor = ingresarValorAConvertir();
+        }
         return valor;
     }
     protected abstract Conversor elegirCambio(double valor);

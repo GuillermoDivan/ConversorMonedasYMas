@@ -31,13 +31,13 @@ public class ServicioMenu {
                      sct.realizarConversion();
                      break;
                      case "Distancia.":
-            ServicioConversorDistancia scd = new ServicioConversorDistancia();
-            scd.realizarConversion();
-            break;
-        case "Peso.":
-            ServicioConversorPeso scp = new ServicioConversorPeso();
-            scp.realizarConversion();
-            break;
+                    ServicioConversorDistancia scd = new ServicioConversorDistancia();
+                    scd.realizarConversion();
+                    break;
+                case "Peso.":
+                    ServicioConversorPeso scp = new ServicioConversorPeso();
+                    scp.realizarConversion();
+                    break;
                 case "Salir.":
                     JOptionPane.showMessageDialog(null, "Que tengas un buen día.");
                     break;

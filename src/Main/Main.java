@@ -17,6 +17,10 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        Servicios.ServicioMenu.inicializarMenu();
+        try {
+            Servicios.ServicioMenu.inicializarMenu();
+        } catch (NullPointerException npe) {
+            JOptionPane.showMessageDialog(null, "Que tengas un buen día.");
+        }
     }
 }
