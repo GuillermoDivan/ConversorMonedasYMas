@@ -1,10 +1,10 @@
 package Entidades;
 
-public class ConversorMonedas {
+public class Conversor {
     int proceso;
     double cambio;
 
-    public ConversorMonedas(int proceso, double cambio) {
+    public Conversor(int proceso, double cambio) {
         this.proceso = proceso;
         this.cambio = cambio;
     }

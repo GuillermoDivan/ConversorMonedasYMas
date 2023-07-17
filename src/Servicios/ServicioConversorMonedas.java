@@ -1,84 +1,83 @@
 package Servicios;
 
-import Entidades.ConversorMonedas;
-
+import Entidades.Conversor;
 import javax.swing.*;
 import java.util.Scanner;
 
-public class ServicioConversorMonedas {
+public class ServicioConversorMonedas extends ServicioConversor{
     Scanner input = new Scanner(System.in).useDelimiter("\n");
 
-    public void realizarConversion(){
-       double valor = ingresarValorAConvertir();
-       ConversorMonedas cm = elegirMoneda();
-        convertirMoneda(cm, valor);
-        }
+    @Override
+    protected Conversor elegirCambio(double valor) {
+        int proceso = 0;
+        double cambio = 0;
+        String[] opcionMonedas = {"Peso argentino a Dolar.", "Peso argentino a Euro.", "Peso argentino a Libra.",
+                "Peso argentino a Yenes.", "Peso argentino a Won surcoreano", "Dolar a Peso argentino.",
+                "Euro a Peso argentino.", "Libra a Peso argentino.", "Yenes a Peso argentino.",
+                "Won surcoreano a peso argentino.", "Volver a inicio."};
 
-    private double ingresarValorAConvertir(){
-        double valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor a convertir"));
-        return valor;
-    }
+        String eleccionConversorMonedas = (String) JOptionPane.showInputDialog(
+                null,
+                "¿Cuál es el cambio que deseas consultar?",
+                "Elija entre las opciones",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcionMonedas,
+                opcionMonedas[0]
+        );
 
-    private ConversorMonedas elegirMoneda() {
-        ConversorMonedas cm;
-        int proceso;
-        double cambio;
-        int opcionConvertir = Integer.parseInt(JOptionPane.showInputDialog("Ingrese opción a convertir:" +
-                " 1) Peso argentino a dolar. | 2) Peso argentino a euro. | 3) Peso argentino a Libra." +
-                " | 4) Peso argentino a yenes. | 5) Peso argentino a won surcoreano. | 6 Dolar a peso argentino." +
-                " | 7) Euro a peso argentino. | 8) Libra a peso argentino. | 9) Yenes a peso argentino." +
-                " | 0) Won surcoreano a peso argentino. | Para salir, ingrese dos números cualquiera. "));
-        switch (opcionConvertir) {
-            case 1:
+       switch (eleccionConversorMonedas) {
+            case "Peso argentino a Dolar.":
                 proceso = 1;
                 cambio = 1 / 263.30;
                 break;
-            case 2:
+            case "Peso argentino a Euro.":
                 proceso = 2;
                 cambio = 1 / 289.40;
                 break;
-            case 3:
+            case "Peso argentino a Libra.":
                 proceso = 3;
                 cambio = 1 / 339.50;
                 break;
-            case 4:
+            case "Peso argentino a Yenes.":
                 proceso = 4;
                 cambio = 1 / 1.87;
                 break;
-            case 5:
+            case "Peso argentino a Won surcoreano":
                 proceso = 5;
                 cambio = 1 / 0.20;
                 break;
-            case 6:
+            case "Dolar a Peso argentino.":
                 proceso = 6;
                 cambio = 263.30;
                 break;
-            case 7:
+            case "Euro a Peso argentino.":
                 proceso = 7;
                 cambio = 289.40;
                 break;
-            case 8:
+            case "Libra a Peso argentino.":
                 proceso = 8;
                 cambio = 339.50;
                 break;
-            case 9:
+            case "Yenes a Peso argentino.":
                 proceso = 9;
                 cambio = 1.87;
                 break;
-            case 0:
+            case "Won surcoreano a peso argentino.":
                 proceso = 0;
                 cambio = 0.20;
                 break;
-            default:
+            case "Volver a inicio.":
                 JOptionPane.showMessageDialog(null, "Gracias por utilizar nuestro programa.");
                 return null;
         }
-        return new ConversorMonedas(proceso, cambio);
+        return new Conversor(proceso, cambio);
     }
 
-        private void convertirMoneda(ConversorMonedas cm, double valor){
-            double resultado = valor * cm.getCambio();
-            switch(cm.getProceso()){
+    @Override
+    protected void convertir(Conversor conversor, double valor){
+            double resultado = valor * conversor.getCambio();
+            switch(conversor.getProceso()){
                 case 1: JOptionPane.showMessageDialog(null, "Peso a Dolar: "+ resultado +"."); break;
                 case 2: JOptionPane.showMessageDialog(null, "Peso a Euro: "+ resultado +"."); break;
                 case 3: JOptionPane.showMessageDialog(null, "Peso a Libra: "+ resultado +"."); break;
@@ -90,9 +89,6 @@ public class ServicioConversorMonedas {
                 case 9: JOptionPane.showMessageDialog(null, "Yen a Peso: "+ resultado +"."); break;
                 case 0: JOptionPane.showMessageDialog(null, "Won surcoreano a Peso: "+ resultado +"."); break;
             }
-
-
-
 
         }
 }

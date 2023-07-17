@@ -12,27 +12,11 @@
 * */
 
 package Main;
-
 import Servicios.ServicioConversorMonedas;
-
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        ServicioConversorMonedas scm = new ServicioConversorMonedas();
-        int opcion1;
-        do {
-            opcion1 = Integer.parseInt(JOptionPane.showInputDialog("¿Qué desea convertir? " +
-                    "1) Moneda | 2) Temperatura. | 3) Distancia. | 4) Peso. | 5) Salir. "));
-            switch (opcion1) {
-                case 1:
-                    scm.realizarConversion();
-                    break;
-                case 5:
-                    JOptionPane.showMessageDialog(null, "Que tengas un buen día."); break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Opción no válida. Ingrese otro número.");
-            }
-        } while(opcion1 != 5) ;
+        Servicios.ServicioMenu.inicializarMenu();
     }
 }
